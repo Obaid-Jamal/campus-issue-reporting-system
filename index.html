@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Infrastructure Reporting Portal</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="gov-header">
+    <div class="gov-info">
+      <div class="gov-logo-section">
+        <div class="brand-main">
+          <div class="jharkhand-emblem">CR</div>
+          <div class="brand-text">
+            <div class="brand-title">Campus Issue Reporting Portal</div>
+          </div>
+        </div>
+      </div>
+      <div class="support-info">
+        <span>📞 Support: 1800-COLLEGE | 📧 support@college.edu</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="particles" id="particles"></div>
+
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="gov-badge" style="margin: 0 auto 1rem;">
+          <i class="fas fa-shield-alt"></i>
+          Official College Portal
+        </div>
+        <h1 class="auth-title">
+          <div class="jharkhand-emblem">CR</div>
+          <span id="portalTitle">Campus Issue Reporting Portal</span>
+        </h1>
+        <p class="auth-subtitle" id="portalSubtitle">Infrastructure Reporting System</p>
+        <p style="color: #666; margin-top: 1rem; font-size: 1rem;" id="welcomeMessage">
+          Report infrastructure issues, track maintenance progress, and help improve our campus
+        </p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 1rem; margin: 2rem 0;">
+        <button class="btn-primary" onclick="location.href='login.html'" id="loginBtn">
+          <i class="fas fa-sign-in-alt"></i>
+          <span id="loginBtnText">Login to Portal</span>
+        </button>
+
+        <button class="btn-primary" onclick="location.href='signup.html'" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);" id="signupBtn">
+          <i class="fas fa-user-plus"></i>
+          <span id="signupBtnText">New Student Registration</span>
+        </button>
+      </div>
+
+      <div style="background: #f8fafc; padding: 1.5rem; border-radius: 12px; margin: 1rem 0;">
+        <h3 style="color: #DC143C; margin-bottom: 1rem; text-align: center;" id="featuresTitle">
+          <i class="fas fa-info-circle"></i>
+          <span id="featuresText">Key Features</span>
+        </h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.875rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-exclamation-triangle" style="color: #FF8C00;"></i>
+            <span id="reportText">Report Issues</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-search" style="color: #FF8C00;"></i>
+            <span id="trackText">Track Progress</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-chart-line" style="color: #FF8C00;"></i>
+            <span id="analyticsText">View Analytics</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-mobile-alt" style="color: #FF8C00;"></i>
+            <span id="mobileText">Mobile Friendly</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gov-footer">
+        <div class="gov-links">
+          <a href="#" onclick="showToast('Feature coming soon')">Privacy Policy</a>
+          <a href="#" onclick="showToast('Feature coming soon')">Terms of Service</a>
+          <a href="#" onclick="showToast('Feature coming soon')" id="helpLink">Help</a>
+        </div>
+        <p id="copyrightText">© 2024 Campus Issue Reporting Portal. All rights reserved.</p>
+        <small id="browserText">Best viewed in Chrome, Firefox, or Safari</small>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer"></div>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      createParticles();
+    });
+
+    // This script block runs on the index page to check if a user is already logged in
+    const userCheck = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    if (userCheck.username) {
+      const welcomeMessage = document.getElementById('welcomeMessage');
+      if (welcomeMessage) {
+        welcomeMessage.textContent = 'You are already logged in! Use the buttons below to access your dashboard.';
+      }
+
+      const loginBtn = document.getElementById('loginBtn');
+      const signupBtn = document.getElementById('signupBtn');
+
+      if (loginBtn && signupBtn) {
+        if (userCheck.role === 'admin') {
+          loginBtn.innerHTML = '<i class="fas fa-tachometer-alt"></i><span>Admin Dashboard</span>';
+          // FIXED: Use underscore
+          loginBtn.onclick = () => window.location.href = 'admin_dashboard.html';
+          signupBtn.style.display = 'none';
+        } else {
+          loginBtn.innerHTML = '<i class="fas fa-user"></i><span>Student Dashboard</span>';
+          // FIXED: Use underscore
+          loginBtn.onclick = () => window.location.href = 'citizen_dashboard.html';
+          signupBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i><span>Logout</span>';
+          signupBtn.onclick = () => {
+            localStorage.removeItem('currentUser');
+            window.location.reload();
+          };
+        }
+      }
+    }
+  </script>
+</body>
+</html>

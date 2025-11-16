@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Campus Issue Reporting Portal</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="gov-header">
+    <div class="gov-info">
+      <div class="gov-logo-section">
+        <div class="brand-main">
+          <div class="jharkhand-emblem">CR</div>
+          <div class="brand-text">
+            <div class="brand-title">Campus Issue Reporting Portal</div>
+          </div>
+        </div>
+      </div>
+      <div class="support-info">
+        <span>📞 Support: 1800-COLLEGE | 📧 support@college.edu</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="particles" id="particles"></div>
+
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="gov-badge" style="margin: 0 auto 1rem;">
+          <i class="fas fa-user-plus"></i>
+          Student Registration
+        </div>
+        <h2 class="auth-title">
+          <div class="jharkhand-emblem">CR</div>
+          <span>Create Your Account</span>
+        </h2>
+        <p class="auth-subtitle">Join the Campus Issue Reporting System</p>
+      </div>
+
+      <form id="signupForm">
+        <div class="form-row">
+          <div class="form-group">
+            <i class="form-icon fas fa-user"></i>
+            <input type="text" class="form-input" id="signupFirstName" placeholder="First Name" required>
+          </div>
+          <div class="form-group">
+            <i class="form-icon fas fa-user"></i>
+            <input type="text" class="form-input" id="signupLastName" placeholder="Last Name" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <i class="form-icon fas fa-graduation-cap"></i>
+          <select class="form-input" id="signupDepartment" required>
+            <option value="">Select Department</option>
+            <option value="cse">🖥 CSE (Computer Science)</option>
+            <option value="it">✨ IT (Information Tech)</option>
+            <option value="mechanical">⚙ Mechanical Engineering</option>
+            <option value="ece">📡 ECE (Electronics & Comm.)</option>
+            <option value="electrical">⚡ Electrical Engineering</option>
+            <option value="mtech">🎓 M.Tech</option>
+            <option value="bpharma">💊 B.Pharma</option>
+            <option value="commerce">💼 Commerce</option>
+            <option value="other">📚 Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <i class="form-icon fas fa-id-badge"></i>
+          <input type="text" class="form-input" id="signupErp" placeholder="Enter ERP" required>
+        </div>
+
+        <div class="form-group">
+          <i class="form-icon fas fa-lock"></i>
+          <input type="password" class="form-input" id="signupPassword" placeholder="Choose Password" required>
+        </div>
+
+        <div id="password-rules" class="password-rules">
+          <div id="rule-length" class="rule-item">8+ Characters</div>
+          <div id="rule-uppercase" class="rule-item">1 Uppercase</div>
+          <div id="rule-number" class="rule-item">1 Number</div>
+          <div id="rule-special" class="rule-item">1 Special (!@#$)</div>
+        </div>
+
+        <div class="form-group">
+          <i class="form-icon fas fa-lock"></i>
+          <input type="password" class="form-input" id="signupConfirmPassword" placeholder="Confirm Password" required>
+        </div>
+
+        <button type="submit" class="btn-primary">
+          <i class="fas fa-user-plus"></i>
+          <span>Register Account</span>
+        </button>
+      </form>
+
+      <div style="text-align: center; margin-top: 1.5rem; color: #718096;">
+        <span>Already have an account?</span>
+        <a href="login.html" style="color: #DC143C; font-weight: 600; margin-left: 0.5rem;">Login here</a>
+      </div>
+
+      <div class="gov-footer">
+        <div class="gov-links">
+          <a href="index.html">Home</a>
+          <a href="#" onclick="showToast('Feature coming soon')">Help</a>
+        </div>
+        <p>© 2024 Campus Issue Reporting Portal. All rights reserved.</p>
+        <small>Best viewed in Chrome, Firefox, or Safari</small>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer"></div>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      createParticles();
+      
+      // Initialize password validation checker
+      const passwordInput = document.getElementById('signupPassword');
+      if (passwordInput) {
+        passwordInput.addEventListener('input', function() {
+          validatePasswordRules(passwordInput.value);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
